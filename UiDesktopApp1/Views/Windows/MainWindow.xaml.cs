@@ -76,28 +76,5 @@ namespace UiDesktopApp1.Views.Windows
         {
             WindowState = WindowState.Maximized;
         }
-
-        private void RootNavigation_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if(e.ChangedButton == System.Windows.Input.MouseButton.Left)
-            {
-                                DragMove();
-            }
-        }
-
-        //private Type? _initialPageType;
-        //public void NavigateOnLoad(Type pageType)
-        //{
-        //    _initialPageType = pageType;
-        //}
-
-        //private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    if(_initialPageType != null)
-        //    {
-        //        Navigate(_initialPageType);
-        //        _initialPageType = null;
-        //    }
-        //}
     }
 }

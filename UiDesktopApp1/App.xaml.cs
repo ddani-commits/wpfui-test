@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using UiDesktopApp1.Services;
+using UiDesktopApp1.ViewModels;
 using UiDesktopApp1.ViewModels.Pages;
 using UiDesktopApp1.ViewModels.Windows;
 using UiDesktopApp1.Views.Pages;
@@ -50,10 +51,30 @@ namespace UiDesktopApp1
 
                 services.AddSingleton<DashboardPage>();
                 services.AddSingleton<DashboardViewModel>();
-                services.AddSingleton<DataPage>();
-                services.AddSingleton<DataViewModel>();
+
                 services.AddSingleton<SettingsPage>();
                 services.AddSingleton<SettingsViewModel>();
+
+                services.AddSingleton<CategoryPage>();
+                services.AddSingleton<CategoryViewModel>(); 
+
+                services.AddSingleton<EmployeesPage>();
+                services.AddSingleton<EmployeesViewModel>();
+
+                services.AddSingleton<InventoryPage>();
+                services.AddSingleton<InventoryViewModel>();
+
+                services.AddSingleton<PointOfSalePage>();
+                services.AddSingleton<PointOfSaleViewModel>();
+
+                services.AddSingleton<ProductsPage>();
+                services.AddSingleton<ProductsViewModel>();
+
+                services.AddSingleton<SalesHistoryPage>();
+                services.AddSingleton<SalesHistoryViewModel>();
+
+                services.AddSingleton<SuppliersPage>();
+                services.AddSingleton<SuppliersViewModel>();
             }).Build();
 
         /// <summary>

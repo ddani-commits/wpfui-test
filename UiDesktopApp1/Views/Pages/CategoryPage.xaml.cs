@@ -3,11 +3,11 @@ using Wpf.Ui.Abstractions.Controls;
 
 namespace UiDesktopApp1.Views.Pages
 {
-    public partial class DataPage : INavigableView<DataViewModel>
+    public partial class CategoryPage : INavigableView<CategoryViewModel>
     {
-        public DataViewModel ViewModel { get; }
+        public CategoryViewModel ViewModel { get; }
 
-        public DataPage(DataViewModel viewModel)
+        public CategoryPage(CategoryViewModel viewModel)
         {
             ViewModel = viewModel;
             DataContext = this;

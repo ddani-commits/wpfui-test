@@ -6,7 +6,7 @@ namespace UiDesktopApp1.ViewModels.Windows
     public partial class MainWindowViewModel : ObservableObject
     {
         [ObservableProperty]
-        private string _applicationTitle = "WPF UI - UiDesktopApp1";
+        private string _applicationTitle = "As Computo PoS";
 
         [ObservableProperty]
         private ObservableCollection<object> _menuItems = new()
@@ -19,9 +19,45 @@ namespace UiDesktopApp1.ViewModels.Windows
             },
             new NavigationViewItem()
             {
-                Content = "Data",
+                Content = "Category",
                 Icon = new SymbolIcon { Symbol = SymbolRegular.DataHistogram24 },
-                TargetPageType = typeof(Views.Pages.DataPage)
+                TargetPageType = typeof(Views.Pages.CategoryPage)
+            },
+            new NavigationViewItem()
+            {
+                Content = "Employees",
+                Icon = new SymbolIcon { Symbol = SymbolRegular.People24 },
+                TargetPageType = typeof(Views.Pages.EmployeesPage)
+            },
+            new NavigationViewItem()
+            {
+                Content = "Inventory",
+                Icon = new SymbolIcon { Symbol = SymbolRegular.BoxToolbox24 },
+                TargetPageType = typeof(Views.Pages.InventoryPage)
+            },
+            new NavigationViewItem()
+            {
+                Content = "Point Of Sale",
+                Icon = new SymbolIcon { Symbol = SymbolRegular.BarcodeScanner20 },
+                TargetPageType = typeof(Views.Pages.PointOfSalePage)
+            },
+            new NavigationViewItem()
+            {
+                Content = "Products",
+                Icon = new SymbolIcon { Symbol = SymbolRegular.Window20},
+                TargetPageType = typeof(Views.Pages.ProductsPage)
+            },
+            new NavigationViewItem()
+            {
+                Content = "Sales History",
+                Icon = new SymbolIcon { Symbol = SymbolRegular.TicketDiagonal20},
+                TargetPageType = typeof(Views.Pages.SalesHistoryPage)
+            },
+            new NavigationViewItem()
+            {
+                Content = "Suppliers",
+                Icon = new SymbolIcon { Symbol = SymbolRegular.Person20},
+                TargetPageType = typeof(Views.Pages.SuppliersPage)
             }
         };
 
