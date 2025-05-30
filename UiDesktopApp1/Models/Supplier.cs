@@ -1,4 +1,7 @@
-﻿namespace UiDesktopApp1.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using UiDesktopApp1.ViewModels.Pages;
+
+namespace UiDesktopApp1.Models
 {
     public class Supplier
     {
@@ -19,7 +22,7 @@
             Phone = phone;
             
         }
-        //[NotMapped]
-        //public SuppliersViewModel ViewModel { get; internal set; }
+        [NotMapped]
+        public SuppliersViewModel ViewModel { get; internal set; }
     }
 }

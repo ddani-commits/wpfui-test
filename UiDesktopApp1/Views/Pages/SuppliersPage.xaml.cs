@@ -12,17 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UiDesktopApp1.ViewModels.Pages;
+using Wpf.Ui.Abstractions.Controls;
 
 namespace UiDesktopApp1.Views.Pages
 {
-    /// <summary>
-    /// Lógica de interacción para SuppliersPage.xaml
-    /// </summary>
-    public partial class SuppliersPage : Page
+  
+    public partial class SuppliersPage : INavigableView<SuppliersViewModel>
     {
-        public SuppliersPage()
+        public SuppliersViewModel ViewModel { get; }
+        public SuppliersPage(SuppliersViewModel viewModel)
         {
+            ViewModel = viewModel;
+            DataContext = viewModel;
             InitializeComponent();
+            
         }
     }
 }

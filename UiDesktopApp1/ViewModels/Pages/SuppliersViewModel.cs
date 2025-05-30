@@ -10,7 +10,6 @@ namespace UiDesktopApp1.ViewModels.Pages
 {
     public partial class SuppliersViewModel: ObservableObject
     {
-        public ObservableCollection<Models.Supplier> SuppliersList { get; } = new();
         [ObservableProperty]
         private Models.Supplier? selectedSupplier;
         [ObservableProperty]
@@ -23,6 +22,7 @@ namespace UiDesktopApp1.ViewModels.Pages
         private string email = string.Empty;
         [ObservableProperty]
         private string phone = string.Empty;
+        public ObservableCollection<Models.Supplier> SuppliersList { get; } = new();
         public SuppliersViewModel()
         {
             LoadSuppliers();
@@ -32,7 +32,7 @@ namespace UiDesktopApp1.ViewModels.Pages
             using var db = new ApplicationDbContext();
             foreach (var supplier in db.Suppliers)
             {
-                //supplier.ViewModel = this; // Esto permite acceder al comando desde XAML
+                supplier.ViewModel = this; // Esto permite acceder al comando desde XAML
                 SuppliersList.Add(supplier);
 
             }
@@ -78,10 +78,14 @@ namespace UiDesktopApp1.ViewModels.Pages
             {
                 db.Suppliers.Remove(supplierToDelete);
                 db.SaveChanges();
-                SuppliersList.Remove(supplierToDelete);
+                SuppliersList.Remove(supplier);
 
                 if (SelectedSupplier?.SupplierId == supplier.SupplierId)
                     SelectedSupplier = null;
+            }
+            else
+            {
+                Debug.WriteLine("Supplier not found in database.");
             }
         }
         public void ClearFields()
