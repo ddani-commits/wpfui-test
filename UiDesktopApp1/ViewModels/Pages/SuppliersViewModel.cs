@@ -23,7 +23,7 @@ namespace UiDesktopApp1.ViewModels.Pages
         private string email = string.Empty;
         [ObservableProperty]
         private string phone = string.Empty;
-        public SuppliersViewModel(INavigationService navigation, IAuthenticationService authenticationService) : base(navigation, authenticationService)
+        public SuppliersViewModel()
         {
             LoadSuppliers();
         }
@@ -32,7 +32,7 @@ namespace UiDesktopApp1.ViewModels.Pages
             using var db = new ApplicationDbContext();
             foreach (var supplier in db.Suppliers)
             {
-                supplier.ViewModel = this; // Esto permite acceder al comando desde XAML
+                //supplier.ViewModel = this; // Esto permite acceder al comando desde XAML
                 SuppliersList.Add(supplier);
 
             }

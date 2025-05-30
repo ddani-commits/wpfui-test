@@ -25,7 +25,7 @@ namespace UiDesktopApp1.ViewModels.Pages
 
         [ObservableProperty]
         private string confirmPassword = "";
-        public EmployeesViewModel(INavigationService navigation, IAuthenticationService authenticationService) : base(navigation, authenticationService)
+        public EmployeesViewModel()
         {
             LoadEmployees();
         }

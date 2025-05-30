@@ -22,7 +22,7 @@ namespace UiDesktopApp1.ViewModels.Pages
         [ObservableProperty]
         private string _SKU = "";
         public ObservableCollection<Product> ProductsList { get; } = new();
-        public ProductsViewModel(INavigationService navigation, IAuthenticationService authenticationService) : base(navigation, authenticationService)
+        public ProductsViewModel()
         {
             LoadProducts();
         }

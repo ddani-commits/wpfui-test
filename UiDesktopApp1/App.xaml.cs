@@ -1,9 +1,9 @@
-﻿using System.IO;
-using System.Reflection;
-using System.Windows.Threading;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.IO;
+using System.Windows.Threading;
+using UiDesktopApp1.Data;
 using UiDesktopApp1.Services;
 using UiDesktopApp1.ViewModels.Pages;
 using UiDesktopApp1.ViewModels.Windows;
@@ -90,6 +90,12 @@ namespace UiDesktopApp1
         private async void OnStartup(object sender, StartupEventArgs e)
         {
             await _host.StartAsync();
+            using (var db = new ApplicationDbContext())
+            {
+                // db.Database.EnsureDeleted(); // <- Sirve para borrar la base de datos, cada vez que se abre la aplicación.
+
+                db.Database.EnsureCreated();
+            }
         }
 
         /// <summary>

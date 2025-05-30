@@ -18,7 +18,7 @@ namespace UiDesktopApp1.ViewModels.Pages
         private string parentCategoryName = string.Empty;
 
         public ObservableCollection<Models.Category> CategoriesList { get; } = new();
-        public CategoryViewModel(INavigationService navigation, IAuthenticationService authenticationService) : base(navigation, authenticationService)
+        public CategoryViewModel()
         {
             LoadCategories();
         }
@@ -27,7 +27,7 @@ namespace UiDesktopApp1.ViewModels.Pages
             using var db = new ApplicationDbContext();
             foreach (var category in db.Categories)
             {
-                category.ViewModel = this; // Esto permite acceder al comando desde XAML
+                //category.ViewModel = this; // Esto permite acceder al comando desde XAML
                 CategoriesList.Add(category);
             }
         }
