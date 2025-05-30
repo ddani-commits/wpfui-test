@@ -10,7 +10,7 @@ namespace UiDesktopApp1.Views.Pages
         public CategoryPage(CategoryViewModel viewModel)
         {
             ViewModel = viewModel;
-            DataContext = this;
+            DataContext = viewModel;
 
             InitializeComponent();
         }
