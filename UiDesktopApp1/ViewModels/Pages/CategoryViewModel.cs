@@ -27,7 +27,7 @@ namespace UiDesktopApp1.ViewModels.Pages
             using var db = new ApplicationDbContext();
             foreach (var category in db.Categories)
             {
-                //category.ViewModel = this; // Esto permite acceder al comando desde XAML
+                category.ViewModel = this;
                 CategoriesList.Add(category);
             }
         }
