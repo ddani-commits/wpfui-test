@@ -22,7 +22,8 @@
 
             <Label Content="Teléfono" Margin="5"/>
             <TextBox Text="{Binding Phone}" />
-            <Button Content="Añadir" Command="{Binding AddSupplierCommand}" Margin="5"/> 
+            <Button Content="Añadir" Command="{Binding AddSupplierCommand}" Margin="5"/>
+            <Button Content="Exporar" Command="{Binding ExportToExcelCommand}"/>
         </StackPanel>
         <Grid>
             <DataGrid ItemsSource="{Binding SuppliersList}" AutoGenerateColumns="False" Margin="5">

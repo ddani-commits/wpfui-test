@@ -1,5 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using ClosedXML.Excel;
+using System.Collections.ObjectModel;
+using System.Data;
 using System.Diagnostics;
+using System.IO;
 using System.Net;
 using System.Xml.Linq;
 using UiDesktopApp1.Data;
@@ -88,6 +91,42 @@ namespace UiDesktopApp1.ViewModels.Pages
                 Debug.WriteLine("Supplier not found in database.");
             }
         }
+
+        [RelayCommand]
+        private void ExportToExcel()
+        {
+
+            var dt = new DataTable("Suppliers");
+            dt.Columns.Add("SupplierId", typeof(int));
+            dt.Columns.Add("Name", typeof(string));
+            dt.Columns.Add("ContactName", typeof(string));
+            dt.Columns.Add("Address", typeof(string));
+            dt.Columns.Add("Email", typeof(string));
+            dt.Columns.Add("Phone", typeof(string));
+            dt.Columns.Add("IsActive", typeof(bool));
+
+            foreach (var supplier in SuppliersList)
+            {
+                dt.Rows.Add(supplier.SupplierId, supplier.Name, supplier.ContactName, supplier.Address, supplier.Email, supplier.Phone, supplier.IsActive);
+            }
+
+
+            string downloadsPath = Path.Combine(
+                                   Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+                                   "Downloads"
+             );
+            string filePath = Path.Combine(downloadsPath, "Suppliers.xlsx");
+
+
+            using (var wb = new XLWorkbook())
+            {
+                var ws = wb.Worksheets.Add(dt, "Suppliers");
+                ws.Columns().AdjustToContents();
+                wb.SaveAs(filePath);
+                Debug.WriteLine("Se descargó correctamente");
+            }
+        }
+
         public void ClearFields()
         {
             Name = string.Empty;
