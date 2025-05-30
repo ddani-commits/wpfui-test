@@ -39,7 +39,7 @@
             IsBackButtonVisible="Collapsed"
             IsPaneToggleVisible="True"
             MenuItemsSource="{Binding ViewModel.MenuItems, Mode=OneWay}"
-            PaneDisplayMode="Left"
+            PaneDisplayMode="LeftFluent"
         >
                 <ui:NavigationView.Header>
                     <ui:BreadcrumbBar x:Name="BreadcrumbBar" Margin="42,32,42,20" />
@@ -61,6 +61,9 @@
             Title="{Binding ViewModel.ApplicationTitle}"
             Grid.Row="0"
             CloseWindowByDoubleClickOnIcon="False">
+            <ui:TitleBar.Icon>
+                <ui:ImageIcon Source="pack://application:,,,/Assets/wpfui-icon-256.png" />
+            </ui:TitleBar.Icon>
         </ui:TitleBar>
     </Grid>
 </ui:FluentWindow>

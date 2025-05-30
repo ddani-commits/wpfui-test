@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UiDesktopApp1.Views.Windows"
         mc:Ignorable="d"
+            WindowStartupLocation="CenterScreen"
         Title="LoginWindow" Height="450" Width="800">
     <Grid>
         <StackPanel Margin="20">

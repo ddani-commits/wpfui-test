@@ -20,7 +20,7 @@ namespace UiDesktopApp1.ViewModels.Windows
             new NavigationViewItem()
             {
                 Content = "Category",
-                Icon = new SymbolIcon { Symbol = SymbolRegular.DataHistogram24 },
+                Icon = new SymbolIcon { Symbol = SymbolRegular.Grid24 },
                 TargetPageType = typeof(Views.Pages.CategoryPage)
             },
             new NavigationViewItem()
@@ -32,7 +32,7 @@ namespace UiDesktopApp1.ViewModels.Windows
             new NavigationViewItem()
             {
                 Content = "Inventory",
-                Icon = new SymbolIcon { Symbol = SymbolRegular.BoxToolbox24 },
+                Icon = new SymbolIcon { Symbol = SymbolRegular.ClipboardBulletListLtr20 },
                 TargetPageType = typeof(Views.Pages.InventoryPage)
             },
             new NavigationViewItem()
@@ -44,19 +44,19 @@ namespace UiDesktopApp1.ViewModels.Windows
             new NavigationViewItem()
             {
                 Content = "Products",
-                Icon = new SymbolIcon { Symbol = SymbolRegular.Window20},
+                Icon = new SymbolIcon { Symbol = SymbolRegular.Cube20},
                 TargetPageType = typeof(Views.Pages.ProductsPage)
             },
             new NavigationViewItem()
             {
                 Content = "Sales History",
-                Icon = new SymbolIcon { Symbol = SymbolRegular.TicketDiagonal20},
+                Icon = new SymbolIcon { Symbol = SymbolRegular.Receipt20},
                 TargetPageType = typeof(Views.Pages.SalesHistoryPage)
             },
             new NavigationViewItem()
             {
                 Content = "Suppliers",
-                Icon = new SymbolIcon { Symbol = SymbolRegular.Person20},
+                Icon = new SymbolIcon { Symbol = SymbolRegular.VehicleTruckProfile20},
                 TargetPageType = typeof(Views.Pages.SuppliersPage)
             }
         };
