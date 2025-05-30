@@ -2,43 +2,42 @@
 using System.Diagnostics;
 using UiDesktopApp1.Data;
 using UiDesktopApp1.Models;
-using UiDesktopApp1.Services;
 using Wpf.Ui;
+using UiDesktopApp1.Controls;
 
 namespace UiDesktopApp1.ViewModels.Pages
 {
-    public partial class EmployeesViewModel: ObservableObject
+    // Now every view model must inherit from ViewModel class
+    public partial class EmployeesViewModel : ViewModel
     {
+        // Employee list stays here, we will use it later 
         public ObservableCollection<Employee> EmployeesList { get; } = new();
 
-        [ObservableProperty]
-        private string firstName = "";
+        // this allows us to interact with the dialog 
+        private readonly IContentDialogService _contentDialogService;
 
-        [ObservableProperty]
-        private string lastName = "";
-
-        [ObservableProperty]
-        private string email = "";
-
-        [ObservableProperty]
-        private string password = "";
-
-        [ObservableProperty]
-        private string confirmPassword = "";
-        public EmployeesViewModel()
+        // dialog serve is needed as an argument to get it from the service provider
+        public EmployeesViewModel(IContentDialogService contentDialogService)
         {
+            _contentDialogService = contentDialogService;
             LoadEmployees();
         }
 
-        private void LoadEmployees()
+        [RelayCommand]
+        private async Task OnShowSignInContentDialog()
         {
-            using var db = new ApplicationDbContext();
-            foreach (var employee in db.Employees)
+            if (_contentDialogService.GetDialogHost() is not null)
             {
-                EmployeesList.Add(employee);
+                //var termsOfUseContentDialog = new TermsOfUseContentDialog(contentDialogService.GetDialogHost());
+                //_ = await termsOfUseContentDialog.ShowAsync();
+
+                // Example of how to open a content dialog, a dialog must be created. examples are in Controls folder
+                var newEmployeeContentDialog = new NewEmployeeContentDialog(_contentDialogService.GetDialogHost(), AddEmployee);
+                _ = await newEmployeeContentDialog.ShowAsync();
             }
         }
 
+        // RelaysCommands remain the same
         [RelayCommand]
         public void SaveEmployees()
         {
@@ -51,26 +50,24 @@ namespace UiDesktopApp1.ViewModels.Pages
             Debug.WriteLine("Saved from ViewModel");
         }
 
-        [RelayCommand]
-        public void AddEmployee()
+        private void LoadEmployees()
         {
-            using (var context = new ApplicationDbContext())
+            using var db = new ApplicationDbContext();
+            foreach (var employee in db.Employees)
             {
-                var CurrentEmployee = new Employee(FirstName, LastName, Email);
-                context.Employees.Add(CurrentEmployee);
-                context.SaveChanges();
-                EmployeesList.Add(CurrentEmployee);
-                ClearFields();
+                EmployeesList.Add(employee);
             }
         }
 
-        public void ClearFields()
+        [RelayCommand]
+        public void AddEmployee(Employee CurrentEmployee)
         {
-            FirstName = "";
-            LastName = "";
-            Email = "";
-            Password = "";
-            ConfirmPassword = "";
+            using (var context = new ApplicationDbContext())
+            {
+                context.Employees.Add(CurrentEmployee);
+                context.SaveChanges();
+                EmployeesList.Add(CurrentEmployee);
+            }
         }
     }
 }

@@ -9,6 +9,8 @@
       Title="EmployeesPage">
 
     <Grid>
-        <TextBlock Text="Employees Page" FontSize="24" FontWeight="Bold" Margin="20"/>
+        <StackPanel>
+            <Button Content="Nuevo empleado" Command="{Binding ShowSignInContentDialogCommand}" />
+        </StackPanel>
     </Grid>
 </Page>
