@@ -5,6 +5,9 @@
     <Compile Update="Controls\NewEmployeeContentDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\NewProductContentDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\TermsOfUseContentDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -10,7 +10,9 @@
 
     <Grid>
         <StackPanel>
-            <Button Content="Nuevo empleado" Command="{Binding ShowSignInContentDialogCommand}" />
+            <Button 
+                Content="Nuevo empleado" 
+                Command="{Binding ShowSignInContentDialogCommand}" />
             <ScrollViewer Grid.Row="3" >
                 <DataGrid
 						ItemsSource="{Binding EmployeesList}"

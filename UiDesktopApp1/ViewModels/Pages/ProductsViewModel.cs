@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
+using UiDesktopApp1.Controls;
 using UiDesktopApp1.Data;
 using UiDesktopApp1.Models;
-using UiDesktopApp1.Services;
 using Wpf.Ui;
 
 namespace UiDesktopApp1.ViewModels.Pages
 {
-    public partial class ProductsViewModel: ObservableObject
+    public partial class ProductsViewModel: ViewModel
     {
         [ObservableProperty]
         private string _productName = "";
@@ -21,9 +17,13 @@ namespace UiDesktopApp1.ViewModels.Pages
         private string _barcode = "";
         [ObservableProperty]
         private string _SKU = "";
+        
+        private readonly IContentDialogService _contentDialogService;
         public ObservableCollection<Product> ProductsList { get; } = new();
-        public ProductsViewModel()
+        
+        public ProductsViewModel(IContentDialogService contentDialogService)
         {
+            _contentDialogService = contentDialogService;
             LoadProducts();
         }
 
@@ -37,17 +37,30 @@ namespace UiDesktopApp1.ViewModels.Pages
         }
 
         [RelayCommand]
-        public void AddProduct()
+        private async Task OnShowDialog()
+        {
+            Debug.WriteLine("Show dialog button Clicked");
+            if (_contentDialogService.GetDialogHost() is not null)
+            {
+                //var termsOfUseContentDialog = new TermsOfUseContentDialog(_contentDialogService.GetDialogHost());
+                //_ = await termsOfUseContentDialog.ShowAsync();
+
+                // Example of how to open a content dialog, a dialog must be created. examples are in Controls folder
+                var newProductDialog = new NewProductContentDialog(_contentDialogService.GetDialogHost(), AddProduct);
+                _ = await newProductDialog.ShowAsync();
+            }
+        }
+
+        [RelayCommand]
+        public void AddProduct(Product product)
         {
             using (var context = new ApplicationDbContext())
             {
-                var CurrentProduct = new Product(ProductName, IsActive, Barcode, SKU);
-                context.Products.Add(CurrentProduct);
+                context.Products.Add(product);
                 context.SaveChanges();
-                ProductsList.Add(CurrentProduct);
+                ProductsList.Add(product);
             }
             Console.WriteLine("Add Product command executed.");
-            ClearFields();
         }
 
         [RelayCommand]
@@ -61,14 +74,6 @@ namespace UiDesktopApp1.ViewModels.Pages
                 }
                 context.SaveChanges();
             }
-        }
-
-        private void ClearFields()
-        {
-            ProductName = string.Empty;
-            IsActive = true;
-            Barcode = string.Empty;
-            SKU = string.Empty;
         }
     }
 }

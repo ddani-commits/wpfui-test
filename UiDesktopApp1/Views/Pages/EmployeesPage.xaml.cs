@@ -1,5 +1,4 @@
-﻿using System.Windows.Controls;
-using UiDesktopApp1.ViewModels.Pages;
+﻿using UiDesktopApp1.ViewModels.Pages;
 using Wpf.Ui.Abstractions.Controls;
 
 // You must declare new pages like this

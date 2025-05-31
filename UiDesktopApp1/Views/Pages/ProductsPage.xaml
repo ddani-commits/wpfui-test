@@ -9,6 +9,27 @@
       Title="ProductsPage">
 
     <Grid>
-        <TextBlock Text="Products Page" FontSize="24" FontWeight="Bold" Margin="20"/>
+        <StackPanel>
+            <Button 
+                x:Name="OpenDialogButton"
+                Content="Nuevo producto" 
+                Command="{Binding ShowDialogCommand}" />
+        <ScrollViewer Grid.Row="3" >
+            <DataGrid
+		        ItemsSource="{Binding ProductsList}"
+		        AutoGenerateColumns="True"
+		        IsReadOnly="False">
+                <!--
+		        <DataGrid.Columns>
+			        <DataGridTextColumn Header="ID" Binding="{Binding EmployeeId}" Width="Auto"/>
+			        <DataGridTextColumn Header="Nombre" Binding="{Binding FirstName}"/>
+			        <DataGridTextColumn Header="Apellido" Binding="{Binding LastName}"/>
+			        <DataGridTextColumn Header="Correo" Binding="{Binding Email}"/>
+			        <DataGridCheckBoxColumn Header="Activo" Binding="{Binding IsActive}"/>
+		        </DataGrid.Columns>
+		        -->
+            </DataGrid>
+        </ScrollViewer>
+        </StackPanel>
     </Grid>
 </Page>
