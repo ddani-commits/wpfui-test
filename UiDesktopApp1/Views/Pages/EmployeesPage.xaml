@@ -11,6 +11,21 @@
     <Grid>
         <StackPanel>
             <Button Content="Nuevo empleado" Command="{Binding ShowSignInContentDialogCommand}" />
+            <ScrollViewer Grid.Row="3" >
+                <DataGrid
+						ItemsSource="{Binding EmployeesList}"
+						AutoGenerateColumns="False"
+						IsReadOnly="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding EmployeeId}" Width="Auto"/>
+                        <DataGridTextColumn Header="Nombre" Binding="{Binding FirstName}"/>
+                        <DataGridTextColumn Header="Apellido" Binding="{Binding LastName}"/>
+                        <DataGridTextColumn Header="Correo" Binding="{Binding Email}"/>
+                        <DataGridCheckBoxColumn Header="Activo" Binding="{Binding IsActive}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+
         </StackPanel>
     </Grid>
 </Page>
