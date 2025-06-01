@@ -45,18 +45,22 @@ namespace UiDesktopApp1.Services
         {
             var loginService = _serviceProvider.GetRequiredService<LoginWindow>();
             var loginResult = loginService.ShowDialog();
-            
+
+            // User closed window
+            if (loginResult == false)
+            {
+                Application.Current.Shutdown();
+                return;
+            }
+
+            // User logged in successfully
             if (loginResult == true && !Application.Current.Windows.OfType<MainWindow>().Any())
             {
-                _navigationWindow = (
-                    _serviceProvider.GetService(typeof(INavigationWindow)) as INavigationWindow
-                )!;
+                _navigationWindow = (_serviceProvider.GetService(typeof(INavigationWindow)) as INavigationWindow)!;
 
                 Application.Current.MainWindow = _navigationWindow as Window;
 
                 _navigationWindow!.ShowWindow();
-
-                //if(_navigationWindow is MainWindow mw) mw.NavigateOnLoad(typeof(DashboardPage));
 
                 _navigationWindow.Navigate(typeof(Views.Pages.DashboardPage));
             }
