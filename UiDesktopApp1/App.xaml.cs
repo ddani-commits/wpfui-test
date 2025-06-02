@@ -48,9 +48,11 @@ namespace UiDesktopApp1
                 services.AddSingleton<INavigationWindow, MainWindow>();
                 services.AddSingleton<MainWindowViewModel>();
 
+                services.AddSingleton<IAuthenticationService, AuthenticationService>();
 
-
-                services.AddSingleton<LoginWindow>();
+                // App UI Pages
+                services.AddSingleton<AuthWindow>();
+                services.AddSingleton<AuthWindowViewModel>();
 
                 services.AddSingleton<DashboardPage>();
                 services.AddSingleton<DashboardViewModel>();
@@ -93,13 +95,14 @@ namespace UiDesktopApp1
         /// </summary>
         private async void OnStartup(object sender, StartupEventArgs e)
         {
-            await _host.StartAsync();
+            // Starting the app before cleaning database
+            // lead to inconsistencies
             using (var db = new ApplicationDbContext())
             {
-                // db.Database.EnsureDeleted(); // <- Sirve para borrar la base de datos, cada vez que se abre la aplicación.
-
+                //db.Database.EnsureDeleted(); // <- Sirve para borrar la base de datos, cada vez que se abre la aplicación
                 db.Database.EnsureCreated();
             }
+            await _host.StartAsync();
         }
 
         /// <summary>

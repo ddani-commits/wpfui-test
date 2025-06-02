@@ -43,7 +43,7 @@ namespace UiDesktopApp1.Services
         /// </summary>
         private async Task HandleActivationAsync()
         {
-            var loginService = _serviceProvider.GetRequiredService<LoginWindow>();
+            var loginService = _serviceProvider.GetRequiredService<AuthWindow>();
             var loginResult = loginService.ShowDialog();
 
             // User closed window
