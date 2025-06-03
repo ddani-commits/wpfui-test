@@ -7,30 +7,34 @@
       mc:Ignorable="d" 
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:controls="clr-namespace:UiDesktopApp1.Controls"
       Title="ProductsPage">
-
     <Grid>
-        <StackPanel>
-            <Button 
-                x:Name="OpenDialogButton"
-                Content="Nuevo producto" 
-                Command="{Binding ShowDialogCommand}" />
-        <ScrollViewer Grid.Row="3" >
-            <ui:DataGrid
-		        ItemsSource="{Binding ProductsList}"
-		        AutoGenerateColumns="True"
-		        IsReadOnly="False">
-                <!--
-		        <DataGrid.Columns>
-			        <DataGridTextColumn Header="ID" Binding="{Binding EmployeeId}" Width="Auto"/>
-			        <DataGridTextColumn Header="Nombre" Binding="{Binding FirstName}"/>
-			        <DataGridTextColumn Header="Apellido" Binding="{Binding LastName}"/>
-			        <DataGridTextColumn Header="Correo" Binding="{Binding Email}"/>
-			        <DataGridCheckBoxColumn Header="Activo" Binding="{Binding IsActive}"/>
-		        </DataGrid.Columns>
-		        -->
-            </ui:DataGrid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Botón -->
+            <RowDefinition Height="*"/>
+            <!-- Lista con scroll -->
+        </Grid.RowDefinitions>
+
+        <!-- Botón que queda fijo -->
+        <Button 
+            Grid.Row="0"
+            x:Name="OpenDialogButton"
+            Content="Nuevo producto" 
+            Command="{Binding ShowDialogCommand}" 
+            Margin="10" />
+
+        <!-- Scroll SOLO en la lista -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding ProductsList}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <controls:ProductControl Data="{Binding}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </ScrollViewer>
-        </StackPanel>
     </Grid>
+
 </Page>
