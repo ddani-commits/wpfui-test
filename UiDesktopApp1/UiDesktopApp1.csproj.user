@@ -11,9 +11,6 @@
     <Compile Update="Controls\NewProductContentDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\NewSupplierContentDialog.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Controls\ProductControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
