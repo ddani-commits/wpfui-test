@@ -26,9 +26,11 @@ namespace UiDesktopApp1.ViewModels.Pages
         [ObservableProperty]
         private string phone = string.Empty;
         public ObservableCollection<Models.Supplier> SuppliersList { get; } = new();
-        public SuppliersViewModel()
+        private readonly IContentDialogService _contentDialogService;
+        public SuppliersViewModel(IContentDialogService contentDialogService)
         {
             LoadSuppliers();
+            _contentDialogService = contentDialogService;
         }
         public void LoadSuppliers()
         {
@@ -51,7 +53,7 @@ namespace UiDesktopApp1.ViewModels.Pages
                 context.Suppliers.Add(currentSupplier);
                 context.SaveChanges();
                 SuppliersList.Add(currentSupplier);
-                ClearFields();
+                
             }
         }
 
@@ -127,14 +129,5 @@ namespace UiDesktopApp1.ViewModels.Pages
             }
         }
 
-        public void ClearFields()
-        {
-            Name = string.Empty;
-            ContactName = string.Empty;
-            Address = string.Empty;
-            Email = string.Empty;
-            Phone = string.Empty;
-
-        }
     }
 }

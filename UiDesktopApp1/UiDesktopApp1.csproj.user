@@ -11,6 +11,12 @@
     <Compile Update="Controls\NewProductContentDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\ProductControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\RegisterControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\TermsOfUseContentDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
