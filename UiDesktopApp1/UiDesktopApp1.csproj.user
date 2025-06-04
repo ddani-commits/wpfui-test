@@ -2,10 +2,19 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="Controls\LoginControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\NewEmployeeContentDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controls\NewProductContentDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\ProductControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\RegisterControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controls\TermsOfUseContentDialog.xaml.cs">
@@ -32,7 +41,7 @@
     <Compile Update="Views\Pages\SuppliersPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Windows\LoginWindow.xaml.cs">
+    <Compile Update="Views\Windows\AuthWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

@@ -41,11 +41,7 @@ namespace UiDesktopApp1.ViewModels.Pages
         {
             Debug.WriteLine("Show dialog button Clicked");
             if (_contentDialogService.GetDialogHost() is not null)
-            {
-                //var termsOfUseContentDialog = new TermsOfUseContentDialog(_contentDialogService.GetDialogHost());
-                //_ = await termsOfUseContentDialog.ShowAsync();
-
-                // Example of how to open a content dialog, a dialog must be created. examples are in Controls folder
+            {   // Example of how to open a content dialog, a dialog must be created. examples are in Controls folder
                 var newProductDialog = new NewProductContentDialog(_contentDialogService.GetDialogHost(), AddProduct);
                 _ = await newProductDialog.ShowAsync();
             }
