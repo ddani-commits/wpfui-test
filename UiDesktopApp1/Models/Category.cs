@@ -15,7 +15,7 @@ namespace UiDesktopApp1.Models
         public string CategoryName { get; set; }
         public string ParentCategoryName { get; set; }
 
-      
+
         public Category( string categoryName, string parentCategoryName)
         {          
             CategoryName = categoryName;

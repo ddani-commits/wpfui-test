@@ -1,12 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
 using UiDesktopApp1.Data;
-using UiDesktopApp1.Services;
+using UiDesktopApp1.Models;
 using Wpf.Ui;
+using UiDesktopApp1.Controls;
+using System.Windows.Controls;
 
 namespace UiDesktopApp1.ViewModels.Pages
 {
-    public partial class CategoryViewModel : ObservableObject
+    public partial class CategoryViewModel : ViewModel
     {
         [ObservableProperty]
         private Models.Category? selectedCategory;
@@ -18,8 +20,10 @@ namespace UiDesktopApp1.ViewModels.Pages
         private string parentCategoryName = string.Empty;
 
         public ObservableCollection<Models.Category> CategoriesList { get; } = new();
-        public CategoryViewModel()
+        private readonly IContentDialogService _contentDialogService;
+        public CategoryViewModel(IContentDialogService contentDialogService)
         {
+            _contentDialogService = contentDialogService;
             LoadCategories();
         }
         private void LoadCategories()
@@ -32,17 +36,28 @@ namespace UiDesktopApp1.ViewModels.Pages
             }
         }
 
+        [RelayCommand]
+        private async Task ShowSignInContentDialog()
+        {
+            if (_contentDialogService.GetDialogHost() is not null)
+            {
+                // Example of how to open a content dialog, a dialog must be created. examples are in Controls folder
+                var newCategoryContentDialog = new NewCategoryContentDialog(_contentDialogService.GetDialogHost(), AddCategory);
+                _ = await newCategoryContentDialog.ShowAsync();
+            }
+            Debug.WriteLine("Show SignIn Content Dialog Command Executed");
+        }
+
         // Añadir
         [RelayCommand]
-        public void AddCategory()
+        public void AddCategory(Models.Category CurrentCategory)
         {
             using (var context = new ApplicationDbContext())
-            {
-                var currentCategory = new Models.Category(CategoryName, ParentCategoryName);
-                context.Categories.Add(currentCategory);
+            {               
+                context.Categories.Add(CurrentCategory);
                 context.SaveChanges();
-                CategoriesList.Add(currentCategory);
-                ClearFields();
+                CategoriesList.Add(CurrentCategory);
+              
             }
         }
         // Guardar
@@ -82,10 +97,6 @@ namespace UiDesktopApp1.ViewModels.Pages
                 Debug.WriteLine("Category not found.");
             }
         }
-        public void ClearFields()
-        {
-            CategoryName = string.Empty;
-            ParentCategoryName = string.Empty;
-        }
+    
     }
 }
